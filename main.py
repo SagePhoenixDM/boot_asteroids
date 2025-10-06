@@ -10,6 +10,10 @@ def main():
     print(f'Screen width: {SCREEN_WIDTH}')
     print(f'Screen height: {SCREEN_HEIGHT}')
 
+    # creating game clock
+    clock = pygame.time.Clock()
+    dt = 0  # delta time b/w frames
+
     # creating GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -23,6 +27,8 @@ def main():
         screen.fill(color=(0, 0, 0))
         # refreshing screen
         pygame.display.flip()
+        # calling tick to maintain fps
+        dt = clock.tick(60) / 1000  # converted from ms to sec
 
 
 # only allowing main to run if executed from CLI
