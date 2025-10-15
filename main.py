@@ -1,6 +1,7 @@
 # importing packages
 import pygame
 from constants import *
+from player import Player
 
 
 # defining main function
@@ -17,6 +18,13 @@ def main():
     # creating GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # creating player object
+    player = Player(
+        (SCREEN_WIDTH / 2),
+        (SCREEN_HEIGHT / 2),
+        PLAYER_RADIUS
+        )
+
     # creating game loop
     while True:
         # exiting game loop if screen closed
@@ -25,6 +33,8 @@ def main():
                 return
         # creating black screen
         screen.fill(color=(0, 0, 0))
+        # drawing player
+        player.draw(screen)
         # refreshing screen
         pygame.display.flip()
         # calling tick to maintain fps
