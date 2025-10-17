@@ -56,8 +56,14 @@ def main():
         updatable.update(dt)  # uses updatable group
         # checking for player/asteroid collisions
         for item in asteroids:
-            if player.collsion_detect(item):
+            if player.collision_detect(item):
                 sys.exit("Game over!")
+        # checking for shot/asteroid collisions
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collision_detect(asteroid):
+                    asteroid.kill()
+                    shot.kill()
         
         # refreshing screen
         pygame.display.flip()
