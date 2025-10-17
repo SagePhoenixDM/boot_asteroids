@@ -1,9 +1,11 @@
 # importing packages
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+
 
 
 # defining main function
@@ -45,9 +47,13 @@ def main():
         for objects in drawable:
             objects.draw(screen)
 
-        # updating player
+        # updating game state
         # player.update(dt)  # old method, superceded by group
         updatable.update(dt)  # uses updatable group
+        # checking for player/asteroid collisions
+        for item in asteroids:
+            if player.collsion_detect(item):
+                sys.exit("Game over!")
         
         # refreshing screen
         pygame.display.flip()
