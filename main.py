@@ -19,11 +19,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # creating player object
-    player = Player(
-        (SCREEN_WIDTH / 2),
-        (SCREEN_HEIGHT / 2),
-        PLAYER_RADIUS
-        )
+    player = Player(x=(SCREEN_WIDTH / 2), y=(SCREEN_HEIGHT / 2))
 
     # creating game loop
     while True:
@@ -31,10 +27,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
         # creating black screen
         screen.fill(color=(0, 0, 0))
         # drawing player
         player.draw(screen)
+
+        # updating player
+        player.update(dt)
+        
         # refreshing screen
         pygame.display.flip()
         # calling tick to maintain fps
